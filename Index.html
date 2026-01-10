@@ -197,7 +197,10 @@ nav a:hover{ transform: scale(1.2); }
     text-align:center;
     animation: aparecer .4s ease;
 }
-.modal-content span{
+.modal-content{
+    position: relative;
+}
+.cerrar-modal{
     position:absolute;
     right:25px;
     top:15px;
@@ -214,6 +217,141 @@ footer{
     color:#777;
     animation: aparecer 2s ease;
 }
+#mensaje {
+  transition: opacity 0.5s ease;
+}
+/* ===== REGISTRO ===== */
+.registro {
+    margin: 60px 20px;
+    padding: 40px;
+    background: #ffffffcc;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+    animation: aparecer 1.5s ease;
+}
+
+.registro h2 {
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    color: #ff5acd;
+    margin-bottom: 25px;
+}
+
+#formRegistro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 420px;
+    margin: auto;
+}
+
+#formRegistro input {
+    padding: 12px 15px;
+    border-radius: 15px;
+    border: 2px solid #e0c6ff;
+    font-size: 14px;
+    font-family: 'Comfortaa', cursive;
+}
+
+#formRegistro input:focus {
+    outline: none;
+    border-color: #ff5acd;
+    box-shadow: 0 0 10px #ffb6d9;
+}
+
+#formRegistro button {
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(#ff67c0,#ff9adf);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    animation: pulso 2.5s infinite;
+}
+
+#formRegistro button:hover {
+    transform: scale(1.05);
+}
+
+#mensaje {
+    text-align: center;
+    font-weight: bold;
+}
+html {
+    scroll-behavior: smooth;
+}
+/* ===== MODAL LOGIN ESTILO ===== */
+#loginModal .modal-content {
+    border: 3px solid #ff5acd;
+    box-shadow: 0 0 30px rgba(255, 90, 205, 0.8);
+}
+
+#loginModal h2 {
+    color: #9b6df0;
+    font-family: 'Fredoka', sans-serif;
+    margin-bottom: 15px;
+}
+
+#loginModal input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 15px;
+    border: 2px solid #e0c6ff;
+    font-family: 'Comfortaa', cursive;
+}
+
+#loginModal button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(#ff67c0,#ff9adf);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    animation: pulso 2.5s infinite;
+}
+
+.link-registro {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.link-registro span {
+    color: #ff5acd;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.link-registro span:hover {
+    text-decoration: underline;
+}
+.link-registro{
+    position: static;
+    display: inline;
+    font-size:14px;
+    color:#ff5acd;
+    cursor:pointer;
+    font-weight:bold;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.error {
+  animation: shake 0.3s;
+}
+nav a.activo{
+    color:#ff5acd;
+    border-bottom:2px solid #ff5acd;
+}
 </style>
 </head>
 
@@ -222,10 +360,10 @@ footer{
 <header>
     <h1>Zona Gamer</h1>
     <nav>
-        <a href="Index.html">Inicio</a>
+        <a href="#" class="activo">Inicio</a>
         <a href="Juegos.html">Juegos</a>
         <a href="Foro.html">Foro</a>
-        <a class="login" href="#">Iniciar Sesión</a>
+        <a class="login" href="#" onclick="abrirLogin()">Iniciar Sesión</a>
     </nav>
 </header>
 
@@ -290,6 +428,38 @@ footer{
         <p id="modalTexto"></p>
     </div>
 </div>
+<div id="loginModal" class="modal">
+  <div class="modal-content login-box">
+     <span class="cerrar-modal" onclick="cerrarLogin()">✖</span>
+    <h2>Iniciar Sesión</h2>
+
+    <input type="email" id="loginCorreo" placeholder="Correo">
+    <input type="password" id="loginPassword" placeholder="Contraseña">
+    <small id="fuerzaPassword"></small>
+
+    <button onclick="login()">Entrar</button>
+    <p id="loginMensaje"></p>
+    <p class="link-registro">
+  ¿No tienes cuenta?
+  <span class="link-registro" onclick="irARegistro()">
+    Regístrate aquí
+  </span>
+  </p>
+  </div>
+</div>
+<section class="registro" id="registro">
+  <h2>Registro</h2>
+
+  <form id="formRegistro">
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="email" id="correo" placeholder="Correo electrónico">
+    <input type="password" id="password" placeholder="Contraseña">
+    <input type="password" id="confirmar" placeholder="Confirmar contraseña">
+
+    <button type="submit">Registrarse</button>
+    <p id="mensaje"></p>
+  </form>
+</section>
 
 <footer>
     © 2025 Zona Gamer
@@ -304,6 +474,121 @@ function abrirModal(titulo, texto){
 function cerrarModal(){
     document.getElementById("modal").style.display = "none";
 }
+</script>
+
+<script>
+document.getElementById("formRegistro").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombre").value.trim();
+    let correo = document.getElementById("correo").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmar = document.getElementById("confirmar").value;
+    let mensaje = document.getElementById("mensaje");
+
+    mensaje.style.opacity = "1";
+
+    if(nombre === "" || correo === "" || password === "" || confirmar === ""){
+        mensaje.innerText = "Todos los campos son obligatorios";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    if(!correo.includes("@") || !correo.includes(".")){
+        mensaje.innerText = "Correo no válido";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    if(password.length < 8 || !/\d/.test(password)){
+        mensaje.innerText = "La contraseña debe tener mínimo 8 caracteres y un número";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    if(password !== confirmar){
+        mensaje.innerText = "Las contraseñas no coinciden";
+        mensaje.style.color = "red";
+        return;
+    }
+
+    mensaje.innerText = "Registro exitoso 🎮";
+    mensaje.style.color = "green";
+
+    setTimeout(() => {
+        mensaje.style.opacity = "0";
+    }, 2000);
+});
+</script>
+<script>
+function abrirLogin(){
+    const modal = document.getElementById("loginModal");
+    const box = modal.querySelector(".login-box");
+
+    modal.style.display = "block";
+    box.classList.add("activo");
+}
+
+function cerrarLogin(){
+    const modal = document.getElementById("loginModal");
+    const box = modal.querySelector(".login-box");
+
+    modal.style.display = "none";
+    box.classList.remove("activo");
+}
+
+function login(){
+    let correo = document.getElementById("loginCorreo").value;
+    let pass = document.getElementById("loginPassword").value;
+    let msg = document.getElementById("loginMensaje");
+
+    if(correo === "" || pass === ""){
+        msg.innerText = "Completa todos los campos";
+        msg.style.color = "red";
+        document.querySelector(".login-box").classList.add("error");
+
+setTimeout(() => {
+    document.querySelector(".login-box").classList.remove("error");
+}, 300);
+
+        return;
+}
+    msg.innerText = "Inicio de sesión simulado ✔";
+    msg.style.color = "green";
+}
+function irARegistro(){
+    cerrarLogin();
+    document.getElementById("registro")
+        .scrollIntoView({ behavior: "smooth" });
+}
+</script>
+<script>
+document.getElementById("password").addEventListener("input", function(){
+    const fuerza = document.getElementById("fuerzaPassword");
+    const pass = this.value;
+
+    if(pass.length < 6){
+        fuerza.textContent = "Contraseña débil";
+        fuerza.style.color = "red";
+    } else if(pass.length < 10){
+        fuerza.textContent = "Contraseña media";
+        fuerza.style.color = "orange";
+    } else {
+        fuerza.textContent = "Contraseña fuerte 💪";
+        fuerza.style.color = "green";
+    }
+});
+</script>
+
+<script>
+const links = document.querySelectorAll("nav a");
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+        links.forEach(l => l.classList.remove("activo"));
+        link.classList.add("activo");
+    });
+});
 </script>
 
 </body>
