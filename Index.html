@@ -352,10 +352,56 @@ nav a.activo{
     color:#ff5acd;
     border-bottom:2px solid #ff5acd;
 }
+    /* ===== CIELO Y NUBES ===== */
+.sky{
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.cloud{
+    position: absolute;
+    top: 40px;
+    width: 120px;
+    height: 60px;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.9;
+    animation: moverNubes linear infinite;
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:white;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    top:-30px;
+}
+
+.cloud::before{ left:10px; }
+.cloud::after{ right:10px; }
+
+.cloud1{ animation-duration: 30s; }
+.cloud2{ animation-duration: 40s; top:80px; }
+.cloud3{ animation-duration: 25s; top:120px; }
+
+@keyframes moverNubes{
+    from{ left:-200px; }
+    to{ left:100%; }
+}
 </style>
 </head>
 
 <body>
+    <div class="sky">
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+</div>
 
 <header>
     <h1>Zona Gamer</h1>
