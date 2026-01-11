@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+
+    <title>Contacto | Zona Gamer</title>
+
+    <style>
+        /* ===== BASE ===== */
+        body{
+            margin:0;
+            background: linear-gradient(#ff8fcf,#e7f3ff);
+            font-family:'Baloo 2', cursive;
+            color:#555;
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes aparecer {
+            from { opacity:0; transform: translateY(20px); }
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        @keyframes flotar {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulso {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ===== HEADER ===== */
+        header{
+            margin:20px;
+            padding:15px 30px;
+            background:#ffffffcc;
+            border-radius:25px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 10px 25px rgba(0,0,0,.12);
+            animation: aparecer 1s ease;
+        }
+
+        header h1{
+            margin:0;
+            font-family:'Chewy', cursive;
+            font-size:34px;
+            color:#9b6df0;
+            letter-spacing:2px;
+            animation: flotar 3s infinite;
+        }
+
+        nav a{
+            margin:0 12px;
+            text-decoration:none;
+            color:#8aaacb;
+            font-weight:bold;
+            transition: transform .3s;
+        }
+
+        nav a:hover{
+            transform: scale(1.15);
+        }
+
+        .login{
+            padding:8px 20px;
+            background:linear-gradient(#f8a6cf,#e88bc0);
+            border-radius:20px;
+            color:white;
+            animation: pulso 2.5s infinite;
+        }
+
+        /* ===== CONTACTO ===== */
+        .hero-contacto{
+            text-align:center;
+            margin:20px;
+            padding:50px 25px;
+            background:linear-gradient(#ffd1ea,#e6f3ff);
+            border-radius:30px;
+            animation: aparecer 1.2s ease;
+        }
+
+        .hero-contacto h2{
+            font-size:32px;
+            color:#ff5acd;
+            margin-bottom:10px;
+        }
+
+        .hero-contacto p{
+            font-size:16px;
+        }
+
+        /* ===== FORMULARIO ===== */
+        .contenedor-contacto{
+            max-width:900px;
+            margin:40px auto;
+            padding:30px;
+            background:#ffffffcc;
+            border-radius:30px;
+            box-shadow:0 12px 30px rgba(0,0,0,.15);
+            animation: aparecer 1.4s ease;
+        }
+
+        .contenedor-contacto h3{
+            text-align:center;
+            color:#9d00ff;
+            margin-bottom:30px;
+        }
+
+        .formulario{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:25px;
+        }
+
+        .campo{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .campo label{
+            margin-bottom:6px;
+            font-weight:bold;
+            color:#8b6fe6;
+        }
+
+        .campo input,
+        .campo textarea{
+            padding:12px;
+            border-radius:18px;
+            border:none;
+            outline:none;
+            font-family:'Baloo 2', cursive;
+            background:#f3f3ff;
+        }
+
+        .campo textarea{
+            resize:none;
+            height:120px;
+        }
+
+        .campo-full{
+            grid-column:1 / -1;
+        }
+
+        .btn-enviar{
+            grid-column:1 / -1;
+            margin-top:10px;
+            padding:14px;
+            border:none;
+            border-radius:25px;
+            background:linear-gradient(#7fd6d6,#5fc1c1);
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            animation: pulso 3s infinite;
+        }
+
+        .btn-enviar:hover{
+            background:linear-gradient(#f8a6cf,#e88bc0);
+        }
+
+        /* ===== INFO EXTRA ===== */
+        .info-contacto{
+            margin-top:40px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:25px;
+        }
+
+        .info-box{
+            background:#ffffffbb;
+            padding:20px;
+            border-radius:25px;
+            text-align:center;
+            box-shadow:0 10px 20px rgba(0,0,0,.12);
+            animation: flotar 4s infinite ease-in-out;
+        }
+
+        .info-box h4{
+            margin-bottom:10px;
+            color:#ff67c0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer{
+            margin-top:40px;
+            text-align:center;
+            padding:20px;
+            background:#f3d7ef;
+            color:#777;
+            animation: aparecer 2s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Zona Gamer</h1>
+    <nav>
+        <a href="Index.html">Inicio</a>
+        <a href="Juegos.html">Juegos</a>
+        <a href="Foro.html">Foro</a>
+        <a href="Contacto.html">Contacto</a>
+        <a class="login" href="#">Iniciar Sesión</a>
+    </nav>
+</header>
+
+<section class="hero-contacto">
+    <h2>Contáctanos</h2>
+    <p>¿Tienes dudas, sugerencias o quieres formar parte de la comunidad?</p>
+</section>
+
+<section class="contenedor-contacto">
+    <h3>Envíanos un mensaje</h3>
+
+    <form class="formulario">
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+        </div>
+
+        <div class="campo">
+            <label>Correo</label>
+            <input type="email" placeholder="correo@email.com">
+        </div>
+
+        <div class="campo campo-full">
+            <label>Mensaje</label>
+            <textarea placeholder="Escribe tu mensaje gamer aquí..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar mensaje</button>
+    </form>
+
+    <div class="info-contacto">
+        <div class="info-box">
+            <h4>Email</h4>
+            <p>contacto@gmail.com</p>
+        </div>
+
+        <div class="info-box">
+            <h4>Comunidad</h4>
+            <p>Siguenos en:</p>
+        </div>
+
+        <div class="info-box">
+            <h4>Soporte</h4>
+            <p>Atención 24/7 para todos</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Zona Gamer | Contacto
+</footer>
+
+</body>
+</html>
