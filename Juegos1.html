@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <title>Zona Gamer</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(#ff8fcf, #e7f3ff);
+            color: #555;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            margin: 20px;
+            padding: 15px 30px;
+            background: #ffffffcc;
+            border-radius: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        header h1 {
+            margin: 0;
+            font-family:'Orbitron', fantasy;
+            font-size: 32px;
+            color: #9b6df0;
+        }
+
+        nav a {
+            margin: 0 12px;
+            text-decoration: none;
+            color: #8aaacb;
+            font-weight: bold;
+        }
+
+        .login {
+            padding: 8px 20px;
+            background: linear-gradient(#f8a6cf, #e88bc0);
+            border-radius: 20px;
+            color: white;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin: 20px;
+            background: linear-gradient(#ffcdf8, #fbfdff);
+            border-radius: 30px;
+        }
+
+        .hero h2 {
+            font-size: 29px;
+            color: #ef75d3;
+        }
+
+        /* ===== SECCIÓN DE JUEGOS ===== */
+        .seccion-juegos {
+            padding: 50px 30px;
+        }
+
+        .seccion-juegos h2 {
+            text-align: center;
+            font-size: 30px;
+            color: #8b6fe6;
+            margin-bottom: 40px;
+        }
+
+        .juegos-burbujas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .juego-burbuja {
+            background: #ffffffcc;
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .juego-burbuja img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+
+        .juego-burbuja h3 {
+            color: #d982c4;
+            margin: 15px 0 10px;
+        }
+
+        .juego-burbuja p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .juego-burbuja button {
+            margin-top: 12px;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(#7fd6d6, #5fc1c1);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .juego-burbuja button:hover {
+            background: linear-gradient(#f8a6cf, #e88bc0);
+        }
+
+        .btn-fav {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #bbb;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .btn-fav:hover {
+            transform: scale(1.3);
+        }
+
+        .btn-fav.activo {
+            color: #ff5acd;
+        }
+
+        /* ===== FILTROS Y BUSCADOR ===== */
+        .filtros {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .filtros button {
+            background: linear-gradient(#ff8fcf, #9b6df0);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 8px;
+            border-radius: 25px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .filtros button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,.2);
+        }
+
+        .filtros button.activo {
+            background: linear-gradient(#ff5acd, #ff9adf);
+            box-shadow: 0 0 15px rgba(255,90,205,.8);
+            transform: scale(1.15);
+        }
+
+        .buscador {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .buscador input {
+            width: 60%;
+            max-width: 400px;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 2px solid #ff9adf;
+            font-family: 'Baloo 2', cursive;
+            font-size: 16px;
+        }
+
+        .buscador input:focus {
+            outline: none;
+            box-shadow: 0 0 15px #ffb6d9;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background: #f3d7ef;
+            color: #777;
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        header h1 {
+            font-family: 'Chewy', cursive;
+            font-size: 34px;
+            color: #9b6df0;
+            letter-spacing: 2px;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        .hero,
+        .seccion-juegos,
+        footer {
+            animation: aparecer 1.2s ease;
+        }
+
+        .juego-burbuja {
+            background: #ffffffcc;
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: aparecer 1.5s ease;
+        }
+
+        .juego-burbuja:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 850px;
+            width: 90%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-juegos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .modal-juego {
+            text-align: center;
+            background: #faf7ff;
+            padding: 15px;
+            border-radius: 20px;
+        }
+
+        .modal-juego img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .modal-juego button {
+            margin-top: 8px;
+            padding: 6px 15px;
+            border: none;
+            border-radius: 15px;
+            background: #ff67c0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .descripcion {
+            font-size: 13px;
+            margin-top: 8px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .descripcion.activa {
+            max-height: 80px;
+            opacity: 1;
+        }
+
+        .cerrar {
+            margin-top: 15px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 20px;
+            background: #9b6df0;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Zona Gamer</h1>
+    <nav>
+        <a href="Index.html">Inicio</a>
+        <a href="Juegos.html">Juegos</a>
+        <a href="Foro.html">Foro</a>
+        <a class="login" href="#">Iniciar Sesión</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Explora un mundo gamer</h2>
+</section>
+
+<section class="seccion-juegos">
+    <h2>Explorador de juegos</h2>
+
+    <div class="buscador">
+        <input type="text" id="buscadorJuegos" placeholder="🔍 Buscar juegos...">
+    </div>
+
+    <div class="filtros">
+        <button onclick="filtrar('todos')">Todos</button>
+        <button onclick="filtrar('battle')">MOVIL</button>
+        <button onclick="filtrar('fantasy')">FANTASIA</button>
+        <button onclick="filtrar('space')">CONSOLA</button>
+        <button onclick="filtrar('horror')">HORROR</button>
+    </div>
+
+    <div class="juegos-burbujas">
+
+        <div class="juego-burbuja" data-categoria="battle">
+            <img src="C.jpg" alt="Pet Battle">
+            <h3>MOVIL</h3>
+            <button onclick="abrirModal('battle')">Ver más</button>
+        </div>
+
+        <div class="juego-burbuja" data-categoria="fantasy">
+            <img src="Fantasia.jpg" alt="Fantasy Quest">
+            <h3>FANTASIA</h3>
+            <button onclick="abrirModal('fantasy')">Ver más</button>
+        </div>
+
+        <div class="juego-burbuja" data-categoria="space">
+            <img src="consola.jpg" alt="Space Invaders">
+            <h3>CONSOLA</h3>
+            <button onclick="abrirModal('space')">Ver más</button>
+        </div>
+
+         <div class="juego-burbuja" data-categoria="horror">
+            <img src="PORTADA.jpg" alt="Horror Invaders">
+            <h3>TERROR</h3>
+            <button onclick="abrirModal('horror')">Ver más</button>
+        </div>
+
+    </div>
+</section>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2 id="modalTitulo"></h2>
+        <div class="modal-juegos" id="modalJuegos"></div>
+        <button class="cerrar" onclick="cerrarModal()">Cerrar</button>
+    </div>
+</div>
+
+<footer>
+    © 2026 Zona Gamer
+</footer>
+
+<script>
+const datos = {
+    battle: {
+        titulo: "Juegos para movil",
+        juegos: [
+            { n: "Zombi Tsunami", i: "ZOMBIE.jpg", d: "El jugador controla a un pequeño zombi que corre sin parar por una ciudad." },
+            { n: "Slither", i: "slither.jpg", d: "El jugador controla una serpiente que se mueve por un mapa lleno de luces brillantes." },
+            { n: "Pokemon GO", i: "PokemonGO.jpg", d: "El juego invita a los jugadores a salir y explorar su entorno para encontrar y capturar Pokémon que aparecen en la pantalla como si estuvieran en lugares reales." },
+            { n: "Happy Jump", i: "happyjump.jpg", d: "El jugador controla a un personaje gelatinoso que debe saltar de plataforma en plataforma para subir lo más alto posible." }
+        ]
+    },
+    fantasy: {
+        titulo: "Juegos de Fantasía",
+        juegos: [
+            { n: "Zelda", i: "ZELDA.jpg", d: "Un joven héroe que vive en el reino fantástico de Hyrule. Su misión principal suele ser rescatar a la princesa Zelda y detener a un villano, normalmente Ganon o Ganondorf, que amenaza al mundo." },
+            { n: "Goat", i: "GOAT.jpg", d: "Es un videojuego cómico y de mundo abierto en el que controlas una cabra 🐐. El objetivo principal no es ganar, sino causar caos y divertirte." },
+            { n: "Lies of P", i: "LIES.jpg", d: "Es un videojuego de acción y rol (action‑RPG) con estilo soulslike, lo que significa que tiene combate difícil y táctico, jefe finales exigentes y exploración desafiante." },
+            { n: "Alice Madness Returns", i: "alice.jpg", d: "Es un videojuego de aventura y plataformas con toques de acción y terror psicológico. Es la secuela de American McGee's Alice y presenta una versión oscura y retorcida del mundo de Alicia en el País de las Maravillas." }
+        ]
+    },
+    space: {
+        titulo: "Juegos para consola",
+        juegos: [
+            { n: "GTA", i: "gta.jpg", d: "Es una famosa saga de videojuegos de acción y mundo abierto creada por Rockstar Games. Los juegos te permiten explorar grandes ciudades, cumplir misiones y vivir historias de crimen y aventura desde la perspectiva de distintos personajes." },
+            { n: "Plantas vs Zombies", i: "pvsz.jpg", d: "Es un videojuego de estrategia y defensa de torres creado por PopCap Games. Tu objetivo es proteger tu jardín de oleadas de zombis usando plantas con habilidades especiales." },
+            { n: "Mortal Kombat", i: "mortal kombat.jpg", d: "Es un juego de peleas (fighting game) famoso por su combate uno contra uno y su estilo violento y sangriento." },
+            { n: "Halo", i: "halo.jpg", d: "Halo es una saga de videojuegos de disparos en primera persona (FPS) creada por Bungie y continuada por 343 Industries. Es famosa por su historia épica de ciencia ficción y guerra espacial." }
+        ]
+    },
+    horror: {
+        titulo: "Juegos de terror",
+        juegos: [
+            { n: "Five Nights at Freddy's", i: "FIVE.jpg", d: "El juego Five Nights at Freddy’s trata sobre sobrevivir cinco noches trabajando como guardia de seguridad nocturno en una pizzería infantil llamada Freddy Fazbear’s Pizza." },
+            { n: "Resident Evil", i: "resi.jpg", d: "Intenta sobrevivir en un mundo lleno de zombies y monstruos causados por un virus creado por la corporación Umbrella." },
+            { n: "Granny", i: "grany.jpg", d: "Estás atrapado en la casa de una anciana llamada Granny y debes escapar sin que ella te atrape.Tienes 5 días para lograrlo." },
+            { n: "Outlast", i: "out.jpg", d: "Exploras un hospital abandonado sin armas. Solo puedes correr, esconderte y grabar con una cámara." } 
+        ]
+    }
+};
+
+function abrirModal(tipo) {
+    document.getElementById("modalTitulo").innerText = datos[tipo].titulo;
+    const cont = document.getElementById("modalJuegos");
+    cont.innerHTML = "";
+
+    datos[tipo].juegos.forEach(j => {
+        cont.innerHTML += `
+            <div class="modal-juego">
+                <img src="${j.i}">
+                <h4>${j.n}</h4>
+                <button onclick="toggleDesc(this)">Ver más</button>
+                <p class="descripcion">${j.d}</p>
+            </div>`;
+    });
+
+    document.getElementById("modal").style.display = "flex";
+}
+
+function toggleDesc(btn) {
+    const desc = btn.nextElementSibling;
+    if (desc.classList.contains("activa")) {
+        desc.classList.remove("activa");
+        btn.innerText = "Ver más";
+    } else {
+        document.querySelectorAll(".descripcion").forEach(d => d.classList.remove("activa"));
+        document.querySelectorAll(".modal-juego button").forEach(b => b.innerText = "Ver más");
+        desc.classList.add("activa");
+        btn.innerText = "Ver menos";
+    }
+}
+
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function filtrar(categoria) {
+    const juegos = document.querySelectorAll(".juego-burbuja");
+    juegos.forEach(juego => {
+        if (categoria === "todos" || juego.dataset.categoria === categoria) {
+            juego.style.display = "block";
+        } else {
+            juego.style.display = "none";
+        }
+    });
+
+    // Marcar el botón activo
+    document.querySelectorAll('.filtros button').forEach(btn => btn.classList.remove('activo'));
+    document.querySelector(`.filtros button[onclick="filtrar('${categoria}')"]`).classList.add('activo');
+}
+</script>
+
+</body>
+</html>
